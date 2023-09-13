@@ -1,0 +1,22 @@
+I MADE IT WITH THE HELP OF EXPRESS 
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+
+// Mock database for storing surveys, questions, options, and responses
+const surveys = [];
+const questions = [];
+const options = [];
+const responses = [];
+
+// Create a new survey
+app.post('/surveys', (req, res) => {
+  const { title, description } = req.body;
+  const survey = { title, description, id: surveys.length + 1 };
+  surveys.push(survey);
+  res.status(201).json(survey);
+});
+
